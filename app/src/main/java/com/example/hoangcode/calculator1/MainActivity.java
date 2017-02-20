@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View.OnClickListener;
-
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
@@ -77,125 +76,132 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == btn0.getId()) {
-            str = str + 0;
-            edtText.setText(str);
-        } else if (v.getId() == btn1.getId()) {
-            str = str + 1;
-            edtText.setText(str);
-        } else if (v.getId() == btn2.getId()) {
-            str = str + 2;
-            edtText.setText(str);
-        } else if (v.getId() == btn3.getId()) {
-            str = str + 3;
-            edtText.setText(str);
-        } else if (v.getId() == btn4.getId()) {
-            str = str + 4;
-            edtText.setText(str);
-        } else if (v.getId() == btn5.getId()) {
-            str = str + 5;
-            edtText.setText(str);
-        } else if (v.getId() == btn6.getId()) {
-            str = str + 6;
-            edtText.setText(str);
-        } else if (v.getId() == btn7.getId()) {
-            str = str + 7;
-            edtText.setText(str);
-        } else if (v.getId() == btn8.getId()) {
-            str = str + 8;
-            edtText.setText(str);
-        } else if (v.getId() == btn9.getId()) {
-            str = str + 9;
-            edtText.setText(str);
-        } else if (v.getId() == btnBang.getId()) {
+        try {
+            if (v.getId() == btn0.getId()) {
+                str = str + 0;
+                edtText.setText(str);
+            } else if (v.getId() == btn1.getId()) {
+                str = str + 1;
+                edtText.setText(str);
+            } else if (v.getId() == btn2.getId()) {
+                str = str + 2;
+                edtText.setText(str);
+            } else if (v.getId() == btn3.getId()) {
+                str = str + 3;
+                edtText.setText(str);
+            } else if (v.getId() == btn4.getId()) {
+                str = str + 4;
+                edtText.setText(str);
+            } else if (v.getId() == btn5.getId()) {
+                str = str + 5;
+                edtText.setText(str);
+            } else if (v.getId() == btn6.getId()) {
+                str = str + 6;
+                edtText.setText(str);
+            } else if (v.getId() == btn7.getId()) {
+                str = str + 7;
+                edtText.setText(str);
+            } else if (v.getId() == btn8.getId()) {
+                str = str + 8;
+                edtText.setText(str);
+            } else if (v.getId() == btn9.getId()) {
+                str = str + 9;
+                edtText.setText(str);
+            } else if (v.getId() == btnBang.getId()) {
 
-            String ht = edtText.getText().toString();
-            if (pheptoan == "+") {
-                float b = 0;
-                String test = ht.replace('+', '#');
-                String[] str2 = test.split("#");
-                for (int i = 0; i < str2.length; i++) {
-                    a = Float.parseFloat(str2[i]);
-                    b = b + a;
-                }
-                str = "";
-                edtText.setText(str);
-                str = str + b;
-                edtText.setText(str);
-            } else if (pheptoan == "-") {
-                float b = 0;
-                String test = ht.replace('-', '#');
-                String[] str2 = test.split("#");
-                for (int i = 0; i < str2.length; i++) {
-                    a = Float.parseFloat(str2[i]);
-                    if (i < 2) {
-                        b = -b - a;
-                    } else if (i >= 2) {
-                        a = a * -1;
-                        b = -b - a;
-                        b = b * -1;
+                String ht = edtText.getText().toString();
+                if (pheptoan == "+") {
+                    float b = 0;
+                    String test = ht.replace('+', '#');
+                    String[] str2 = test.split("#");
+                    for (int i = 0; i < str2.length; i++) {
+                        a = Float.parseFloat(str2[i]);
+                        b = b + a;
                     }
+                    str = "";
+                    edtText.setText(str);
+                    str = str + b;
+                    edtText.setText(str);
+                } else if (pheptoan == "-") {
+                    float b = 0;
+                    String test = ht.replace('-', '#');
+                    String[] str2 = test.split("#");
+                    for (int i = 0; i < str2.length; i++) {
+                        a = Float.parseFloat(str2[i]);
+                        if (i < 2) {
+                            b = -b - a;
+                        } else if (i >= 2) {
+                            a = a * -1;
+                            b = -b - a;
+                            b = b * -1;
+                        }
+                    }
+                    str = "";
+                    edtText.setText(str);
+                    str = str + b;
+                    edtText.setText(str);
+                } else if (pheptoan == "*") {
+                    float b = 1;
+                    String test = ht.replace('*', '#');
+                    String[] str2 = test.split("#");
+                    for (int i = 0; i < str2.length; i++) {
+                        a = Float.parseFloat(str2[i]);
+                        b = b * a;
+                    }
+                    str = "";
+                    edtText.setText(str);
+                    str = str + b;
+                    edtText.setText(str);
+                } else if (pheptoan == "/") {
+                    float b = 1;
+                    String test = ht.replace('/', '#');
+                    String[] str2 = test.split("#");
+                    for (int i = 0; i < str2.length; i++) {
+                        a = Float.parseFloat(str2[i]);
+                        if (i < 1) b = a / b;
+                        else b = b / a;
+                    }
+                    str = "";
+                    edtText.setText(str);
+                    str = str + b;
+                    edtText.setText(str);
                 }
+            } else if (v.getId() == btnCong.getId()) {
+                str = str + "+";
+                this.pheptoan = "+";
+                edtText.setText(str);
+            } else if (v.getId() == btnTru.getId()) {
+                str = str + "-";
+                this.pheptoan = "-";
+                edtText.setText(str);
+            } else if (v.getId() == btnNhan.getId()) {
+                str = str + "*";
+                this.pheptoan = "*";
+                edtText.setText(str);
+            } else if (v.getId() == btnChia.getId()) {
+                str = str + "/";
+                this.pheptoan = "/";
+                edtText.setText(str);
+            } else if (v.getId() == btnAmDuong.getId()) {
+                str = '-' + str;
+                edtText.setText(str);
+            } else if (v.getId() == btnCham.getId()) {
+                str = str + ".";
+                edtText.setText(str);
+            } else if (v.getId() == btnSet0.getId()) {
                 str = "";
-                edtText.setText(str);
-                str = str + b;
-                edtText.setText(str);
-            } else if (pheptoan == "*") {
-                float b = 1;
-                String test = ht.replace('*', '#');
-                String[] str2 = test.split("#");
-                for (int i = 0; i < str2.length; i++) {
-                    a = Float.parseFloat(str2[i]);
-                    b = b * a;
-                }
+                edtText.setText("");
+            } else if (v.getId() == btnNgoac.getId()) {
                 str = "";
-                edtText.setText(str);
-                str = str + b;
-                edtText.setText(str);
-            }else if (pheptoan == "/") {
-                float b=1;
-                String test = ht.replace('/', '#');
-                String[] str2 = test.split("#");
-                for (int i = 0; i < str2.length; i++) {
-                    a = Float.parseFloat(str2[i]);
-                    if(i<1) b = a/b;
-                    else b=b/a;
-                }
-                str = "";
-                edtText.setText(str);
-                str = str + b;
-                edtText.setText(str);
+                edtText.setText("");
+            } else if (v.getId() == btnXoa.getId()) {
+                str = edtText.getText().toString();
+                edtText.setText(str.substring(0, str.length() - 1));
             }
-        } else if (v.getId() == btnCong.getId()) {
-            str = str + "+";
-            this.pheptoan = "+";
-            edtText.setText(str);
-        } else if (v.getId() == btnTru.getId()) {
-            str = str + "-";
-            this.pheptoan = "-";
-            edtText.setText(str);
-        } else if (v.getId() == btnNhan.getId()) {
-            str = str + "*";
-            this.pheptoan = "*";
-            edtText.setText(str);
-        } else if (v.getId() == btnChia.getId()) {
-            str = str + "/";
-            this.pheptoan = "/";
-            edtText.setText(str);
-        } else if (v.getId() == btnAmDuong.getId()) {
-            str = "-" + str;
-            edtText.setText(str);
-        } else if (v.getId() == btnCham.getId()) {
-            str = str + ".";
-            edtText.setText(str);
-        } else if (v.getId() == btnSet0.getId()) {
-            str = "";
-            edtText.setText("");
-        } else if (v.getId() == btnNgoac.getId()) {
-            str = "";
-            edtText.setText("");
-        }else if(v.getId()==btnXoa.getId()){
-
+        }catch (Exception e){
+            Toast.makeText(this,"error logic !!!hehehe",Toast.LENGTH_LONG).show();
         }
     }
+
+
 }
